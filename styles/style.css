@@ -1,11 +1,15 @@
 *{
     box-sizing: border-box;
 }
+body {
+  Background-color: #eef9bf;
+}
 .container {
   display: flex;
   justify-content: center;
   width: 100%;
   gap: 50px;
+  
   flex-wrap: wrap;
 }
 
@@ -19,28 +23,41 @@
   right: 7px;
   bottom: 22px;
 }
+h1 {
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 56px;
+line-height: 66px;
+letter-spacing: -0.004em;
+text-align: center;
+margin-bottom: 47px;
+margin-top: 40px;
+color: #75B79E;
 
-
-
+}
+.back-face img {
+  width: 100px;
+  height: 100px;
+}
   .card {
     width: 117px;
     height: 150px;
     margin: 10px;
-    background: white;
+    background: #eef9bf;
     border-radius: 5px;
     cursor: pointer;
     position: relative;
     display: flex;
   }
-  .card.flip {
-    transform: rotateY(-180deg);
-  }
+
   .face {
     width: 100%;
     height: 100%;
     background-color: #A7E9AF;
     border-radius: 10px;
     box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    border: 1px solid #99CEA8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,12 +70,29 @@
   .back-face {
     transform: rotateY(180deg);
   }
-
-  .card:hover .back-face {
+  .front {
+    transform: rotateY(-180deg);
+  }
+ .back {
     transform: rotateY(0deg);
   }
-
-  .card:hover .front-face {
+  /*
+   .card:hover .front-face {
     transform: rotateY(-180deg);
+  }  */
+
+
+
+  
+  @media (max-width: 335px) {
+    h1 {
+      font-size: 36px;
+    }
+    .container {
+      display: block;
+    }
+    .card {
+      margin-left: 109px;  
+    }
   }
   
