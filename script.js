@@ -1,11 +1,10 @@
 const arrayCartas = [];
 let arrayback = [];
-let previousCard = null;
-let turnedCards = [];
 let numCards = 0;
 let rightCards  = 0;
 let numMoves = 0;
-let interval = false;
+let interval = 0;
+let count = 0;
 let card1, card2;
 let hasFlippedCard = false;
 const arraybackface = ['midia/bobrossparrot.gif','midia/bobrossparrot.gif','midia/explodyparrot.gif','midia/explodyparrot.gif','midia/fiestaparrot.gif','midia/fiestaparrot.gif',
@@ -23,7 +22,7 @@ cardnumber();
 
 
 function backCards(numberOfCards) {
-   arrayback = arraybackface.slice(0, numberOfCards)   
+   arrayback = arraybackface.slice(0, numberOfCards);   
 
 };
 
@@ -58,6 +57,9 @@ for (let i = 0; i < numberOfCards; i++) {
         front.innerHTML = arrayback[i];
         div.setAttribute('onclick', 'flipCard(this)');
         console.log(div) ;  
+        front.setAttribute('data-test', 'face-front-image');
+        back.setAttribute('data-test', 'face-down-image')
+        div.setAttribute('data-test', 'card');
         div.setAttribute('data-framework', arrayback[i]);
         container.appendChild(div);
         div.appendChild(front);
@@ -89,17 +91,42 @@ function flipCard(card) {
       card2 = card;
     
     console.log(card1, card2)
-    
+
     if (card1.dataset.framework === card2.dataset.framework) {
       card1.removeAttribute('onclick');
       card2.removeAttribute('onclick');
+      rightCards += 2
     } else {
       setTimeout(() => {
         card1.classList.remove('flip');
         card2.classList.remove('flip');
-      }, 2000 );
+      }, 1000 );
     }
     }
+
+    setTimeout(() => {
+      if (rightCards === numberOfCards) {
+      endGame();
+    }}, 1500 );
+    
+
+
+  }
+
+    function endGame(){
+      clearInterval(interval);
+      alert (`Você ganhou em ${numMoves} jogadas!`);
+      
+      //let restart = prompt("Deseja reiniciar a partida? (Sim ou Não)");
+      
+      // if (restart.toUpperCase() === "SIM" || restart.toUpperCase() === "S"){
+      //   restartGame();
+      // }
+      }
+
+
+
+
 
 //     card.classList.add('selected')
 //     const front = card.querySelector('.front-face');
@@ -112,7 +139,7 @@ function flipCard(card) {
 //     card.removeAttribute("onclick")
 // //    verifyPair();
 
-}
+
 
 // function verifyPair() {
 //     turnedCards = document.querySelectorAll('.selected');
@@ -141,72 +168,4 @@ function flipCard(card) {
 // } 
 // }
 
-function returnCards(){
-for (let i=0; i < turnedCards.length; i++){
-  if ( turnedCards[i].classList.contains("review") ){
-    turnedCards[i].classList.remove("review");
-    turnedCards[i].classList.remove("front");
-    turnedCards[i].classList.add ("back");
 
-    turnedCards[i].setAttribute("data-identifier","back-face");
-  }
-}
-}
-
-
-
-
-
-
-function endGame(){
-clearInterval(interval);
-alert (`Você ganhou em ${numMoves} jogadas e em ${counter.innerHTML} segundos!`);
-
-let restart = prompt("Deseja reiniciar a partida? (Sim ou Não)");
-
-if (restart.toUpperCase() === "SIM" || restart.toUpperCase() === "S"){
-  restartGame();
-}
-}
-
-
-
-
-
-
-
-
-
-// const arrayCardsFront = document.querySelectorAll('.front-face')
-// console.log(arrayCardsFront)
-// arrayCardsFront.forEach((front) => {
-//     front.addEventListener('click', () => {
-//         if (!front.classList.contains('.flip')) {
-//             front.classList.add(".flip")
-//             console.log(arrayCardsFront)
-//         }
-
-//     })
-// })
-// const arrayCardsBack = document.querySelectorAll('.back-face')
-// console.log(arrayCardsBack)
-// arrayCardsBack.forEach((back) => {
-//     back.addEventListener('click', () => {
-//         if (!back.classList.contains('.backflip')) {
-//             back.classList.add(".flip")
-//             console.log(arrayCardsBack)
-//         }
-
-//     })
-// })
-
-// function flipcard(card) {
-//     card.classList.add('flip');
-// }
-// const cardclick = document.querySelectorAll('.card')
-
-// function flipcard(){
-//     alert('oi')
-// }
-
-// cardclick.onclick = flipcard;
