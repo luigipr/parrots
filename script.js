@@ -57,8 +57,8 @@ for (let i = 0; i < numberOfCards; i++) {
         front.innerHTML = arrayback[i];
         div.setAttribute('onclick', 'flipCard(this)');
         console.log(div) ;  
-        front.setAttribute('data-test', 'face-front-image');
-        back.setAttribute('data-test', 'face-down-image')
+        front.setAttribute('data-test', 'face-down-image');
+        back.setAttribute('data-test', 'face-front-image')
         div.setAttribute('data-test', 'card');
         div.setAttribute('data-framework', arrayback[i]);
         container.appendChild(div);
