@@ -57,8 +57,8 @@ for (let i = 0; i < numberOfCards; i++) {
         front.innerHTML = arrayback[i];
         div.setAttribute('onclick', 'flipCard(this)');
         console.log(div) ;  
-        front.setAttribute('data-test', 'face-down-image');
-        back.setAttribute('data-test', 'face-front-image')
+        front.setAttribute('data-test', 'face-up-image');
+        back.setAttribute('data-test', 'face-down-image')
         div.setAttribute('data-test', 'card');
         div.setAttribute('data-framework', arrayback[i]);
         container.appendChild(div);
@@ -91,15 +91,20 @@ function flipCard(card) {
       card2 = card;
     
     console.log(card1, card2)
-
+    virar = document.querySelectorAll('.card')
     if (card1.dataset.framework === card2.dataset.framework) {
       card1.removeAttribute('onclick');
       card2.removeAttribute('onclick');
       rightCards += 2
-    } else {
+    } else {      
+      virar.removeAttribute('onclick');
       setTimeout(() => {
         card1.classList.remove('flip');
         card2.classList.remove('flip');
+      }, 1000 );
+      virar.removeAttribute('onclick');
+      setTimeout(() => {
+        virar.setAttribute('onclick', 'flipCard(this)');
       }, 1000 );
     }
     }
