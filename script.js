@@ -44,26 +44,30 @@ for (let i = 0; i < numberOfCards; i++) {
       let div = document.createElement("div");
         div.classList.add('card');
         
-        let front = document.createElement('img');
-        let back = document.createElement('img');
-        //front.classList.add('front')
+        let front = document.createElement('div');
+        let frontImg = document.createElement('img');
+        let back = document.createElement('div');
+        let backImg = document.createElement('img');
+                //front.classList.add('front')
         front.classList.add('face');
         front.classList.add('front-face');
-        back.setAttribute("src" , 'midia/back.png');
+        backImg.setAttribute("src" , 'midia/back.png');
         back.classList.add('back-face');
         back.classList.add('face');
         //back.classList.add('back');
-        front.setAttribute("src" , arrayback[i]);
-        front.innerHTML = arrayback[i];
+        frontImg.setAttribute("src" , arrayback[i]);
+        // front.innerHTML = arrayback[i];
         div.setAttribute('onclick', 'flipCard(this)');
         console.log(div) ;  
-        front.setAttribute('data-test', 'face-up-image');
-        back.setAttribute('data-test', 'face-down-image')
+        frontImg.setAttribute('data-test', 'face-up-image');
+        backImg.setAttribute('data-test', 'face-down-image')
         div.setAttribute('data-test', 'card');
         div.setAttribute('data-framework', arrayback[i]);
         container.appendChild(div);
         div.appendChild(front);
         div.appendChild(back);
+        front.appendChild(frontImg);
+        back.appendChild(backImg);
         // console.log(front)
         // console.log(back)
         // <div>card
@@ -91,22 +95,22 @@ function flipCard(card) {
       card2 = card;
     
     console.log(card1, card2)
-    virar = document.querySelectorAll('.card')
-    if (card1.dataset.framework === card2.dataset.framework) {
-      card1.removeAttribute('onclick');
-      card2.removeAttribute('onclick');
-      rightCards += 2
-    } else {      
-      virar.removeAttribute('onclick');
-      setTimeout(() => {
-        card1.classList.remove('flip');
-        card2.classList.remove('flip');
-      }, 1000 );
-      virar.removeAttribute('onclick');
-      setTimeout(() => {
-        virar.setAttribute('onclick', 'flipCard(this)');
-      }, 1000 );
-    }
+
+      }
+    const flippedcards = document.querySelectorAll('.flip');
+      if ((flippedcards.length)%2 === 0) {
+        if (card1.dataset.framework === card2.dataset.framework) {
+          card1.removeAttribute('onclick');
+          card2.removeAttribute('onclick');
+          rightCards += 2
+        } else {      
+          
+          setTimeout(() => {
+            card1.classList.remove('flip');
+            card2.classList.remove('flip');
+          }, 1000 );
+        }
+      }  
     }
 
     setTimeout(() => {
@@ -114,9 +118,6 @@ function flipCard(card) {
       endGame();
     }}, 1500 );
     
-
-
-  }
 
     function endGame(){
       clearInterval(interval);

@@ -38,8 +38,9 @@ color: #75B79E;
 }
 
 .card {
-  width: 117px;
-  height: 150px;
+  width: 117px!important;
+  height: 150px!important;
+  /* background-color: #A7E9AF; */
   margin: 10px;
   background: #eef9bf;
   border-radius: 5px;
@@ -47,6 +48,7 @@ color: #75B79E;
   position: relative;
   display: flex;
   transform: scale(1);
+
 }
 
 .card:active {
@@ -73,17 +75,19 @@ color: #75B79E;
 img {
   width: 100px;
   height: 100px;
+  border-style: none;
 }
+
+/* .front {
+  transform: rotateY(0deg);}
 
 .back {
   transform: rotateY(-180deg);
-}
+} */
 
 .front-face {
   transform: rotateY(-180deg);
 }
-.front {
-  transform: rotateY(0deg);}
 
 .flip .front-face {
   transform: rotateY(0deg);
